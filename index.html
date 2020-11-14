@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
     <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,6 +17,7 @@
     </div>
 
 <script>
+
 var easyMDE = new EasyMDE({
     element: document.getElementById('my-text-area'),
     sideBySideFullscreen: false,
@@ -44,24 +45,43 @@ var easyMDE = new EasyMDE({
         delay: 1000,
         uniqueId: 'mde-autosave-demo'
     },
+
+    initialValue: `# title\n## subject\n### subsubject\n* items\n* items\n* items\n## link\n* [link to google](https://www.google.com/?hl=ja)\n
+    `
 });
 
 function saveHandler(editor){ // コンテキスト
     const mdContents = easyMDE.value();
     const a = document.createElement('a');
     a.href = 'data:text/plain,' + encodeURIComponent(mdContents);
-    a.download = 'markdown.md';
+    a.download = 'article.md';
     a.click();
 };
 
-function saveHtmlHandler(editor){ // コンテキスト
+function saveHtmlHandler(editor){
     const mdContents = easyMDE.value();
+    let htmlContents = `<html lang=ja>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style type="text/css">
+        table, td, th {border-collapse: collapse; border:1px #222 solid;};
+    </style>
+
+</head>
+<body>`
+
+    htmlContents += marked(mdContents)
+    htmlContents += `
+                    </body>`
+
     const a = document.createElement('a');
-    a.href = 'data:text/plain,' + encodeURIComponent(mdContents);
-    a.download = 'markdown.md';
+    a.href = 'data:text/plain,' + encodeURIComponent(htmlContents);
+    a.download = 'article.html';
     a.click();
     };
-
 </script>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

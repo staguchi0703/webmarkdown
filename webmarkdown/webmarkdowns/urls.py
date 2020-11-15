@@ -5,7 +5,6 @@ app_name = 'webmarkdowns'
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path("detail/<int:blog_id>", views.detail, name="detail")
 
 ]
 

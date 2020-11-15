@@ -25,7 +25,7 @@ class Articles(models.Model):
     class Meta(object):
         db_table = 'articles'
 
-    project = models.ForeignKey(Projects, verbose_name='種類')
+    project = models.ForeignKey(Projects, verbose_name='種類', on_delete=models.PROTECT, null=True, blank=True)
     owner = models.ForeignKey( CustomUser, verbose_name='使用者', on_delete=models.PROTECT, null=True, blank=True)
     time_stamp = models.DateTimeField(default=timezone.now, null=True, blank=True)
     markdown_txt = models.TextField(verbose_name='markdown text', null=True, blank=True, default='# Title')

@@ -4,14 +4,14 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    image: lend-nginx
-    container_name: lend-nginx
+    image: webmarkdown-nginx
+    container_name: webmarkdown-nginx
     ports:
       - 8000:8000
     networks:
       - django-net
     volumes:
-      - ./lendings/static:/static
+      - ./webmarkdown/static:/static
     depends_on: 
       - django
 
@@ -33,16 +33,9 @@ services:
       - 8888:8888
 
   postgres:
-    build:
-      context: ./postgresql
-      dockerfile: Dockerfile
-    image: webmarkdown-postgres
+    image: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_USER=django_db_user
-      - POSTGRES_PASSWORD=password1234
-      - POSTGRES_DB=django_db
     networks:
       - django-net
 

@@ -14,6 +14,7 @@ services:
       - ./lendings/static:/static
     depends_on: 
       - django
+
   django:
     build:
       context: ./webmarkdown
@@ -26,10 +27,29 @@ services:
       - django-net
     volumes:
       - ./webmarkdown:/home/webmarkdown/
+    environment:
+      # 1ならデバックモード
+      - DEBUG=1
+      - DATABASE_ENGINE=django.db.backends.postgresql
+      - DATABASE_DB=django_db
+      - DATABASE_USER=django_db_user
+      - DATABASE_PASSWORD=password1234
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+    depends_on:
+      - postgres
+
   postgres:
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    image: webmarkdown-postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=django_db_user
+      - POSTGRES_PASSWORD=password1234
+      - POSTGRES_DB=django_db
 
 networks:
   django-net:

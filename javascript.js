@@ -18,7 +18,7 @@ function saveHandler(editor) {
 
 // markdown to html translation
 
-function reloadHtml() {
+function md2html() {
 // idからHTMLelemntを取得する
 var html_id = document.getElementById("markedPreview");
 var mdElem = document.getElementById("markdown_editor_textarea");

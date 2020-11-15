@@ -18,8 +18,12 @@ function saveHandler(editor) {
 
 // markdown to html translation
 
-function reloadHtml(editor) {
+function reloadHtml() {
+// idからHTMLelemntを取得する
 var html_id = document.getElementById("markedPreview");
-var md_article = $('#markdown_editor_textarea').val();
-html_id.innerHTML = marked(md_article);
+var mdElem = document.getElementById("markdown_editor_textarea");
+// emElemから要素のテキストを抽出(.value)してmarked()に渡す
+var md_article = marked(mdElem.value);
+//html_idにmarkedで変換したhtmlを挿入する
+html_id.innerHTML = md_article;
 };

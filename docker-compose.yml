@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: lend-nginx
+    container_name: lend-nginx
+    ports:
+      - 8000:8000
+    networks:
+      - django-net
+    volumes:
+      - ./lendings/static:/static
+    depends_on: 
+      - django
+  django:
+    build:
+      context: ./webmarkdown
+      dockerfile: Dockerfile
+    image: webmarkdown-django
+    container_name: webmarkdown-django
+    expose:
+      - "8001"
+    networks:
+      - django-net
+    volumes:
+      - ./webmarkdown:/home/webmarkdown/
+  postgres:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+
+networks:
+  django-net:
+    driver: bridge
+
+volumes:
+    postgres_data:

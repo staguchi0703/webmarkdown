@@ -45,7 +45,7 @@ var easyMDE = new EasyMDE({
     `
 });
 
-function saveHandler(editor){ // コンテキスト
+function saveHandler(editor){
     const mdContents = easyMDE.value();
     const a = document.createElement('a');
     a.href = 'data:text/plain,' + encodeURIComponent(mdContents);

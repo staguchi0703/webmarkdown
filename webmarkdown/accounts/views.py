@@ -15,9 +15,9 @@ logger = logging.getLogger(__name__)
 
 class RegisterView(View):
     def get(self, request, *args, **kwargs):
-        # すでにログインしている場合はitems画面へリダイレクト
+        # すでにログインしている場合はwebmarkdowns画面へリダイレクト
         if request.user.is_authenticated:
-            return redirect(reverse('items:index'))
+            return redirect(reverse('webmarkdowns:index'))
 
         context = {
             'form': RegisterForm(),
@@ -53,9 +53,9 @@ register = RegisterView.as_view()
 class LoginView(View):
     def get(self, request, *args, **kwargs):
         """GETリクエスト用のメソッド"""
-        # すでにログインしている場合はitems画面へリダイレクト
+        # すでにログインしている場合はwebmarkdowns画面へリダイレクト
         if request.user.is_authenticated:
-            return redirect(reverse('items:index'))
+            return redirect(reverse('webmarkdowns:index'))
 
         context = {
             'form': LoginForm(),
@@ -86,7 +86,7 @@ class LoginView(View):
         messages.info(request, "ログインしました。")
 
         # ショップ画面にリダイレクト
-        return redirect(reverse('items:index'))
+        return redirect(reverse('webmarkdowns:index'))
 
 
 login = LoginView.as_view()

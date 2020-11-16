@@ -25,5 +25,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/accounts/login/')),
     path('accounts/', include('accounts.urls')),
-    path('webmarkdowns/', include('webmarkdowns.urls')),
+    path('webmarkdowns/', include('webmarkdowns.urls'))
 ]

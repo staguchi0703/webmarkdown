@@ -9,10 +9,7 @@ from django.utils import timezone
 class Projects(models.Model):
     """プロジェクトモデル"""
 
-    class Meta(object):
-        db_table = 'projects'
-    
-    project_name = models.CharField(verbose_name='プロジェクト', max_length=255, null=True, blank=True, default='未分類')
+    project_name = models.CharField(max_length=255, null=True, blank=True, default='unknown')
 
 
     def __str__(self):
@@ -21,9 +18,6 @@ class Projects(models.Model):
 
 class Articles(models.Model):
     """記事モデル"""
-
-    class Meta(object):
-        db_table = 'articles'
 
     project = models.ForeignKey(Projects, verbose_name='種類', on_delete=models.PROTECT, null=True, blank=True)
     owner = models.ForeignKey( CustomUser, verbose_name='使用者', on_delete=models.PROTECT, null=True, blank=True)

@@ -1,7 +1,7 @@
 # 開発メモ
 
 ## 注意点
-
+* postgresのdocker imageは、version 11でないと install しているdjango(psycopg2かも?)のバージョンと合わない。
 * djangoのDB backendは`postgresql_psycopg2`
 * postgresの環境変数は以下の指定が必要で、同じ設定をdjangoのDBにもする必要がある。
     ```

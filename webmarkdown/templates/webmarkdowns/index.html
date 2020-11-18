@@ -6,15 +6,29 @@
 {% block content %}
     <div class="container">
         <div class="jumbotron text-light">
-            <h1 class="display-4">Hello, world!</h1>
-            <p class="lead">This is a simple hero unit ...</p>
+            <h1 class="display-4">Hello, Simple, Easy, Light!</h1>
+            <p class="lead">This is a simple markdown manager</p>
             <hr class="my-4">
-            <p>It uses utility classes for ...</p>
+            <p>It uses utility tool for write simple documents. This app is inspired by simple markdown editor.</p>
         </div>
         
-        <div class="row">
+        <div class="row d-flex justify-content-between">
+
+        {% for item in projects_list %}
+
+            <div class="card bg-light shadow" style="width:15rem;">
+            {% comment %} <img class="card-img-top" src="../image/100x60.png" alt="Card image cap"> {% endcomment %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.project_name }}</h5>
+                    <p class="card-text"> {{ item.project_descriptions }} </p>
+                    <a href="#" class="card-link">Card link</a>
+                </div>
+            </div>
+            
+        {% endfor %}
             
         </div>
     </div>
+</div>
 
 {% endblock content %}

@@ -10,6 +10,7 @@ class Projects(models.Model):
     """プロジェクトモデル"""
 
     project_name = models.CharField(max_length=255, null=True, blank=True, default='unknown')
+    project_descriptions = models.TextField(verbose_name='descriptions', null=True, blank=True, default='')
 
 
     def __str__(self):

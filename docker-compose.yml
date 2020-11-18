@@ -40,9 +40,9 @@ services:
       - DATABASE_PORT=5432
 
   db:
-    image: postgres:13.1-alpine
+    image: postgres:11.1-alpine
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - django-net
     environment:
@@ -53,3 +53,6 @@ services:
 networks:
   django-net:
     driver: bridge
+
+volumes:
+  postgres_data:

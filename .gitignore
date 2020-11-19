@@ -1,11 +1,11 @@
 debug.log
-migrations/
 __pycache__/
 /.vscode/
 *.pyc
 __pycache__/
 *.log
 *.pot
+*_initial.py
 webmarkdown/accounts/__pycache__/__init__.cpython-37.pyc
 webmarkdown/accounts/__pycache__/admin.cpython-37.pyc
 webmarkdown/accounts/__pycache__/forms.cpython-37.pyc

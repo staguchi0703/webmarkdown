@@ -10,7 +10,7 @@
             <p class="lead">This is a simple markdown manager</p>
             <hr class="my-4">
             <p>It uses utility tool for write simple documents. This app is inspired by simple markdown editor.</p>
-            <buttom class="btn btn-secondary"> 新規作成 </buttom>
+            <buttom class="btn btn-secondary" type="button" onclick="location.href = './detail/1'"" > 新規作成 </buttom>
         </div>
         
 
@@ -22,7 +22,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ item.project_name }}</h5>
                     <p class="card-text"> {{ item.project_descriptions }} </p>
-                    <a href="#" class="card-link">Card link</a>
+                    <a href="{% url 'webmarkdowns:project' item.pk %}" class="card-link">Card link</a>
                 </div>
             </div>
             

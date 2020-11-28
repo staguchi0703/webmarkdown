@@ -10,17 +10,32 @@ from .models import Projects, Articles
 
 from urllib.parse import urlencode
 
+import markdown
+
+def markd(txt):
+    md = markdown.Markdown(extensions=['tables'])
+    return md.convert(txt)
+
+
+
 class IndexView(LoginRequiredMixin, ListView):
     template_name = 'webmarkdowns/index.html'
     model = Projects
 
 index = IndexView.as_view()
 
-class DetailView(LoginRequiredMixin, ListView):
-    template_name = 'webmarkdowns/detail.html'
-    model = Articles
+def project(request, pjpk):
+    project_name = get_object_or_404(Projects, pk=pjpk)
+    article_list = Articles.objects.filter(project=project_name)
+    html_article_list = []
+    for article in article_list:
+        html_article_list.append(markd(article.markdown_txt))
+    return render(request, 'webmarkdowns/project.html', {'html_txt_list':html_article_list, 'articles':article_list, 'project_name':project_name})
 
-detail = DetailView.as_view()
+
+def detail(request, pk):
+    article_contents = Articles.objects.filter(pk=pk)
+    return render(request, 'webmarkdowns/detail.html')
 
 
 class NewsView(LoginRequiredMixin, ListView):
